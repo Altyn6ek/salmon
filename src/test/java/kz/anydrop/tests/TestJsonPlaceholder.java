@@ -18,5 +18,4 @@ public class TestJsonPlaceholder {
                 .then().statusCode(200)
                 .body("userId", equalTo(1));;
     }
-
 }
