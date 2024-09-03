@@ -8,6 +8,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.Java6BDDSoftAssertionsProvider;
+import org.hamcrest.Condition;
 
 import java.util.Map;
 
@@ -41,5 +42,12 @@ public class PostSteps {
         return given().spec(REQUEST_SPECIFICATION)
                 .body(postData)
                 .put("posts/" + postId);
+    }
+
+    public Response patchPost(Map<String, Object> postData, int postId) {
+        postData.put("id", postId);
+        return given().spec(REQUEST_SPECIFICATION)
+                .body(postData)
+                .patch("posts/" + postId);
     }
 }

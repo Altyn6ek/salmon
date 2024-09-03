@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
@@ -54,6 +53,26 @@ public class TestJsonPlaceholder {
         postData.put("userId", userId);
         PostSteps postSteps = new PostSteps();
         postSteps.updatePost(postData, postId)
+                .then().statusCode(200)
+                .body("id", equalTo(1),
+                        "title", equalTo(title),
+                        "body", equalTo(body),
+                        "userId", equalTo(userId));
+
+    }
+
+    @Test
+    public void testPatchPost() {
+        Map<String, Object> postData = new HashMap<>();
+        String title = "testing title";
+        String body = "testing body";
+        int postId = 1;
+        int userId = 1;
+        postData.put("title", title);
+        postData.put("body", body);
+        postData.put("userId", userId);
+        PostSteps postSteps = new PostSteps();
+        postSteps.patchPost(postData, postId)
                 .then().statusCode(200)
                 .body("id", equalTo(1),
                         "title", equalTo(title),
