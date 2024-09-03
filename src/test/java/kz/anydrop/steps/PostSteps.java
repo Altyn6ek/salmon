@@ -31,6 +31,11 @@ public class PostSteps {
                 .get("posts/" + post_id);
     }
 
+    public Response getPosts() {
+        return given().spec(REQUEST_SPECIFICATION)
+                .get("posts/");
+    }
+
     public Response createPost(Map<String, Object> postData) {
         return given().spec(REQUEST_SPECIFICATION)
                 .body(postData)
@@ -49,5 +54,10 @@ public class PostSteps {
         return given().spec(REQUEST_SPECIFICATION)
                 .body(postData)
                 .patch("posts/" + postId);
+    }
+
+    public Response deletePost(int postId) {
+        return given().spec(REQUEST_SPECIFICATION)
+                .delete("posts/" + postId);
     }
 }

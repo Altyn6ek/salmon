@@ -80,4 +80,17 @@ public class TestJsonPlaceholder {
                         "userId", equalTo(userId));
 
     }
+
+    @Test
+    public void testDeletePost() {
+        PostSteps postSteps = new PostSteps();
+        int postId = 1;
+        postSteps.deletePost(postId)
+                .then().statusCode(200);
+    }
+
+    @Test
+    public void testGetPosts() {
+
+    }
 }
