@@ -8,9 +8,10 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static kz.anydrop.interfaces.BaseComponentTest.config;
-import static org.hamcrest.Matchers.equalTo;
 
 public class PostSteps {
 
@@ -23,8 +24,14 @@ public class PostSteps {
             .addFilter(new AllureRestAssured())
             .build();
 
-    public Response getPost(int i) {
+    public Response getPostById(int post_id) {
         return given().spec(REQUEST_SPECIFICATION)
-                .get("https://jsonplaceholder.typicode.com/posts/1");
+                .get("posts/" + post_id);
+    }
+
+    public Response createPost(Map<String, Object> postData) {
+        return given().spec(REQUEST_SPECIFICATION)
+                .body(postData)
+                .post("posts/");
     }
 }

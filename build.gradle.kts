@@ -18,7 +18,8 @@ dependencies {
     testImplementation("io.rest-assured:rest-assured:5.5.0")
     testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
     testImplementation("io.qameta.allure:allure-rest-assured")
-
+    testImplementation("org.assertj:assertj-core:3.26.3")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
 }
 
 tasks.test {
