@@ -1,5 +1,6 @@
 package kz.anydrop.tests;
 
+import io.qameta.allure.Allure;
 import kz.anydrop.pojos.Post;
 import kz.anydrop.steps.PostSteps;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class TestPosts {
 
     @Test
     public void testAllPosts() {
+        StringBuilder log = new StringBuilder();
         PostSteps postSteps = new PostSteps();
         Post[] posts = postSteps.getPosts()
                 .then().statusCode(200).extract().as(Post[].class);
@@ -39,6 +41,12 @@ public class TestPosts {
         for (int i = 0; i < Math.min(10, sortedWords.size()); i++) {
             Map.Entry<String, Integer> entry = sortedWords.get(i);
             System.out.println((i + 1) + ". " + entry.getKey() + " - " + entry.getValue() + " times");
+            log.append((i + 1)).append(". ").append(entry.getKey()).append(" - ")
+                    .append(entry.getValue()).append(" times \n");
         }
+
+        Allure.addAttachment("Log", "text/plain", "Top 10 most common words: \n" + log,
+                "txt");
+
     }
 }
