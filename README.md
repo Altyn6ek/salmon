@@ -5,12 +5,20 @@
 # Инструкция для mac OS
 ## Предусловия: 
 1. Устновлена JAVA - JDK 21 https://www.oracle.com/java/technologies/downloads/?er=221886#jdk21-mac 
-можно используя homebrew -` /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`;
-`brew update
-brew install openjdk@2`
-Настроены переменные окружения - после установки вам нужно будет указать системе, что именно вы хотите использовать Java 21 по умолчанию. Добавьте следующие строки в ваш файл конфигурации оболочки (например, .zshrc или .bash_profile)
+можно используя homebrew
+` /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+И далее с его помощью установить JAVA
+
+`brew update`
+
+`brew install openjdk@2`
+
+2. Настроены переменные окружения - после установки вам нужно будет указать системе, что именно вы хотите использовать Java 21 по умолчанию. Добавьте следующие строки в ваш файл конфигурации оболочки (например, .zshrc или .bash_profile)
+
 `export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export PATH=$JAVA_HOME/bin:$PATH`
+
 ## Шаги:
 1. Склонировать проект
 2. Из папки проекта ввести команду `./gradlew test`
