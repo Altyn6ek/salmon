@@ -7,6 +7,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.assertj.core.api.Java6BDDSoftAssertionsProvider;
 
 import java.util.Map;
 
@@ -33,5 +34,12 @@ public class PostSteps {
         return given().spec(REQUEST_SPECIFICATION)
                 .body(postData)
                 .post("posts/");
+    }
+
+    public Response updatePost(Map<String, Object> postData, int postId) {
+        postData.put("id", postId);
+        return given().spec(REQUEST_SPECIFICATION)
+                .body(postData)
+                .put("posts/" + postId);
     }
 }

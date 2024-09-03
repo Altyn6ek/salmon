@@ -41,4 +41,24 @@ public class TestJsonPlaceholder {
                         "userId", equalTo(userId));
 
     }
+
+    @Test
+    public void testUpdatePost() {
+        Map<String, Object> postData = new HashMap<>();
+        String title = "testing title";
+        String body = "testing body";
+        int postId = 1;
+        int userId = 1;
+        postData.put("title", title);
+        postData.put("body", body);
+        postData.put("userId", userId);
+        PostSteps postSteps = new PostSteps();
+        postSteps.updatePost(postData, postId)
+                .then().statusCode(200)
+                .body("id", equalTo(1),
+                        "title", equalTo(title),
+                        "body", equalTo(body),
+                        "userId", equalTo(userId));
+
+    }
 }
